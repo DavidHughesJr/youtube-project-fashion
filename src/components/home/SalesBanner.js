@@ -40,7 +40,7 @@ const SalesBanner = () => {
           <Typography mt={1} variant="subtitle2"> Entire Month Flash Sale </Typography>
           <Typography mb={2} variant="subtitle2"> Terms & Conditions Apply </Typography>
           <Box>
-            <Button component={Link} to='.../catalogue'
+            <Button component={Link} to='../catalogue'
               sx={{ width: { xs: '100%', md: 'auto' } }}
               variant="contained"
               color="secondary"

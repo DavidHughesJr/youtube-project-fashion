@@ -17,7 +17,7 @@ const CartPage = () => {
   const renderCart = () => {
     return (
       <Stack
-      direction={{xs: 'column-reverse', md: 'row'}}
+      direction={{xs: 'column', md: 'row'}}
       gap={10}
       justifyContent='center'
       alignItems={{xs: 'center', md: 'flex-start'}}

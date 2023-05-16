@@ -24,6 +24,7 @@ const CheckoutPage = () => {
   const [shippingSubdivisions, setShippingSubdivisions] = useState([])
   const [subdivision, setSubdivision] = useState('')
   const [shippingOptions, setShippingOptions] = useState([])
+  const [loadingReceipt, setLoadingReceipt] = useState(false)
 
   useEffect(() => {
     if (cart.line_items) {
@@ -126,10 +127,13 @@ const CheckoutPage = () => {
 
         setCart(newCart)
         window.sessionStorage.setItem('order_receipt', JSON.stringify(order))
+        setLoadingReceipt(true)
         navigate('/confirmation')
 
 
       } catch (error) {
+        if(error) setLoadingReceipt(false)
+        alert(error.data.error.message)
         console.log(error)
       }
 
@@ -142,7 +146,7 @@ const CheckoutPage = () => {
     <Container maxWidth='xl'>
       {
         !checkoutToken ?
-          <Stack margin={50} justifyContent='center' alignItems='center'>
+          <Stack mt={{xs: 10, md: 20}} mb={{xs: 10, md: 20}} margin='auto' justifyContent='center' alignItems='center'>
             <CircularProgress size='100px' />
           </Stack> :
           <>
@@ -198,9 +202,14 @@ const CheckoutPage = () => {
                             <Stack gap={2}>
                               <>
                                 <CardElement />
-                                <Button type="submit" variant="contained" color="secondary">
+                                <Button type="submit" variant="contained" color="secondary" onClick={() => setLoadingReceipt(true)}>
                                   <Typography variant="subtitle2"> Pay {checkoutToken?.live?.subtotal.formatted_with_symbol} </Typography>
                                 </Button>
+                                {
+                                  loadingReceipt ? <Stack mt={{ xs: 10, md: 20 }} mb={{ xs: 10, md: 20 }} margin='auto' justifyContent='center' alignItems='center'>
+                                    <CircularProgress size='100px' />
+                                  </Stack> : ''
+                                }
                               </>
                             </Stack>
                           </Box>
