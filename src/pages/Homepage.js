@@ -9,7 +9,7 @@ import Newsletter from '../components/common/Newsletter'
 
 
 const NewArrivalsHeading = 'New Arrivals'
-const CustomerFavoritesHeading = 'Customer Favorites'
+const CustomerFavoritesHeading = 'Customers Favorites'
 
 
 const Homepage = () => {
